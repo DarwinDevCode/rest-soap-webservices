@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.uteq.org/soap/divisas"
+           xmlns:tns="http://www.uteq.org/soap/divisas"
+           elementFormDefault="qualified">
+
+    <xs:simpleType name="Divisa">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="USD"/>
+            <xs:enumeration value="EUR"/>
+            <xs:enumeration value="GBP"/>
+            <xs:enumeration value="JPY"/>
+            <xs:enumeration value="MXN"/>
+            <xs:enumeration value="COP"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="ConversionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="monto" type="xs:decimal"/>
+                <xs:element name="divisaOrigen" type="tns:Divisa"/>
+                <xs:element name="divisaDestino" type="tns:Divisa"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ConversionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="montoOriginal" type="xs:decimal"/>
+                <xs:element name="divisaOrigen" type="tns:Divisa"/>
+                <xs:element name="montoConvertido" type="xs:decimal"/>
+                <xs:element name="divisaDestino" type="tns:Divisa"/>
+                <xs:element name="tasaCambio" type="xs:decimal"/>
+                <xs:element name="timestamp" type="xs:dateTime"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+
